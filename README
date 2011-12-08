@@ -1,0 +1,5 @@
+DE is a differential evolution optimizer written in python. It is a very 
+easy to understand algorithm that can you can test at a series of included benchmarks. 
+
+[08-December-2011]
+version 1.0 (first version released to the public)
