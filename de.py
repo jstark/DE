@@ -38,7 +38,7 @@ class Problem:
 	
 	def eval(self, x, data = None):
 		con = self.constrain(x, data)
-		return self.fun(x, data) * con # NOTE: fval * violation
+		return math.fabs(self.fun(x, data) * con) # NOTE: eval implementation might not suit all problems
 	
 	def constrain(self, x, data):
 		violation = 1
@@ -151,10 +151,17 @@ def rosenbrock2(x, data = None):
 def himmelblau(x, data = None):
     return (x[0]**2+x[1]-11)**2+(x[1]**2+x[0]-7)**2
 
+# schwefel2
+# benchmark problem #4
+# f(x,y) = 418.9829 * 2 + x sin (sqrt(abs(x))) + y sin (sqrt(abs(x)))
+def schwefel2(x, data = None):
+    return 418.9829 * 2 + sum([y * math.sin(math.sqrt(math.fabs(y))) for y in x ])
+
 BENCHMARKS = { 
     'sphere2' : Problem(2, [0, 0], [10, 10], sphere2),
     'rosenbrock2' : Problem(2, [0, 0], [10, 10], rosenbrock2), 
-    'himmelblau' : Problem(2, [0, 0], [10, 10], himmelblau)
+    'himmelblau' : Problem(2, [0, 0], [10, 10], himmelblau),
+    'schwefel2' : Problem(2, 2 * [-512.03], 2 * [511.97], schwefel2)
 }
 
 # benchmark_problem;
